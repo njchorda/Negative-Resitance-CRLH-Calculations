@@ -52,7 +52,7 @@ After cloning, add dependencies to your MATLAB path
 |-----------|-------------|
 | `f1`, `f2` | Lower and upper frequency bounds of the passband (Hz) |
 | `theta1`, `theta2` | Desired phase shifts at `f1` and `f2` (rad) |
-| `n` | Number of unit cells (must be **odd** for passive–active–passive symmetry) |
+| `n` | Number of sub-unit cells (must be **odd** for passive–active–passive symmetry) |
 | `Z0` | Reference impedance (default: 50 Ω) |
 | `G_desired` | Target shunt conductance (set as a fraction of `G_max`) |
 
@@ -104,8 +104,8 @@ which is solved exactly at `f1` and `f2`, then fit with an exponential model acr
 
 - `n` must be **odd** to maintain the passive–active–passive cascade symmetry
 - Loss-balanced condition (`Gsh = Rse/Z0²`) is available but commented out by default
-- The Rollett (K-Δ) stability analysis block is present in the code but commented out — uncomment to assess unconditional stability across frequency
-- Maximum achievable gain is estimated from the loss parameters and printed to the console on each run
+- The Rollett (K-Δ) stability analysis block is present in the code but commented out — uncomment to assess stability across frequency
+- Maximum achievable gain is estimated and printed to the console on each run
 
 ---
 
