@@ -1,7 +1,7 @@
 # Active CRLH Transmission Line Modeler
 
 A MATLAB simulation of an **active Composite Right/Left-Handed (CRLH) transmission line** with a frequency-dependent negative resistance element. The structure achieves controlled gain across a user-defined passband by embedding an active shunt element (modeled as a negative resistance `Rn`) within a periodic CRLH unit cell topology.
-This is supplemental code for the paper "Negative Resistance Enabled Amplifying CRLH Transmission Lines With Uniform Insertion Gain" DOI: 10.1109/LMWT.2026.3655243 (https://ieeexplore.ieee.org/document/11366944)
+This is supplemental code for the paper "Negative Resistance Enabled Amplifying CRLH Transmission Lines With Uniform Insertion Gain" DOI: [10.1109/LMWT.2026.3655243 (https://ieeexplore.ieee.org/document/11366944)](https://doi.org/10.1109/LMWT.2026.3655243)
 ---
 
 ## Background
