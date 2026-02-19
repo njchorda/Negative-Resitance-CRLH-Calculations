@@ -1,14 +1,14 @@
 # Active CRLH Transmission Line Modeler
 
 A MATLAB simulation of an **active Composite Right/Left-Handed (CRLH) transmission line** with a frequency-dependent negative resistance element. The structure achieves controlled gain across a user-defined passband by embedding an active shunt element (modeled as a negative resistance `Rn`) within a periodic CRLH unit cell topology.
-This is supplemental code for the paper "Negative Resistance Enabled Amplifying CRLH Transmission Lines With Uniform Insertion Gain" (https://ieeexplore.ieee.org/document/11366944)
+This is supplemental code for the paper "Negative Resistance Enabled Amplifying CRLH Transmission Lines With Uniform Insertion Gain" DOI: 10.1109/LMWT.2026.3655243 (https://ieeexplore.ieee.org/document/11366944)
 ---
 
 ## Background
 
 CRLH transmission lines support both left-handed (LH) and right-handed (RH) wave propagation, enabling precise dispersion control. By introducing a frequency-shaped negative conductance into the shunt branch, this design compensates for losses and achieves net gain across the passband.
 
-The unit cell uses a ** symmetric T-network topology** with:
+The unit cell uses a **symmetric T-network topology** with:
 - **Series branch**: Right-handed inductance `LR` + left-handed capacitance `CL`
 - **Shunt branch**: Right-handed capacitance `CR` + left-handed inductance `LL` + active negative resistance `Rn(f)`
 
@@ -29,7 +29,7 @@ The unit cell uses a ** symmetric T-network topology** with:
   - Bloch impedance (real and imaginary)
 - Outputs (in command window):
   - Constituent CRLH parameters
-  - $R_n(\omega) exponential fit parameters
+  - $R_n(\omega)$ exponential fit parameters
   - $S_{21}$ at desired frequencies ($\omega_1$ and $\omega_2$)
   - Maximum gain
 
@@ -62,13 +62,22 @@ After cloning, add dependencies to your MATLAB path
 
 ## Design Equations
 
-CRLH element values are solved analytically from the two phase/frequency constraints:
+CRLH element values are solved analytically from the two phase/frequency constraints in Reference [1].
 
-$$L_R = \frac{Z_0(\theta_1 \frac{\omega_1}{\omega_2} - \theta_2)}{n\,\omega_2\!\left(1 - \left(\frac{\omega_1}{\omega_2}\right)^2\right)}$$
+Then, the required $R_n(\omega)$ is calculated as:
 
-$$C_R = \frac{\theta_1 \frac{\omega_1}{\omega_2} - \theta_2}{n\,\omega_2 Z_0\!\left(1 - \left(\frac{\omega_1}{\omega_2}\right)^2\right)}$$
+$$R_n(\omega) = -R_0e^{\alpha\omega}$$
 
-with symmetric expressions for `LL` and `CL`.
+with
+
+$$\alpha = \frac{\ln{\left(\frac{R_n(\omega_1)}{R_n(\omega_2)}\right)}}{\omega_1 - \omega_2}$$,
+
+$$R_0 = -R_n(\omega_1)e^{-\alpha \omega_1}$$.
+
+
+This will approximately fit the exact solution of:
+
+$$R_n(\omega) = \frac{1 \pm \sqrt{1 - 4(G'_{sh} \omega L_L)^2}}{2G'_{sh}}$$
 
 The required negative resistance at each frequency satisfies:
 
